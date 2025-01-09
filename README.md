@@ -23,3 +23,28 @@ Hirrd is a job portal web application designed to connect job seekers with emplo
 To run this project locally, follow these steps:
 
 1. **Clone the repository:**
+git clone https://github.com/nagender811/job_portal.git
+
+
+2. **Install dependencies:**
+- **cd job_portal**
+- **npm install**
+
+
+3. **Set up environment variables:**
+- Create a `.env` file in the root of your project.
+- Add your Supabase and Clerk API keys.
+
+4. **Run the project:**
+-  npm run dev
+
+
+5. **Open the app in your browser:**
+-  http://localhost:3000
+
+
+## Contributing 🤝
+Feel free to fork this project and open pull requests. Any contributions to improve the app are welcome!
+
+## License 📜
+This project is open-source and available under the MIT License.
