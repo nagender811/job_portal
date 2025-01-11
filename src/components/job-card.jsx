@@ -25,7 +25,7 @@ const JobCard = ({
     fn: fnSavedJob,
     data: savedJob,
     loading: loadingSavedJob,
-  } = useFetch(saveJob, {alreadySaved: saved,});
+  } = useFetch(saveJob, { alreadySaved: saved });
 
   const { user } = useUser();
 
@@ -36,14 +36,13 @@ const JobCard = ({
     });
     onJobSaved();
   };
-  
 
   useEffect(() => {
     if (savedJob !== undefined) setSaved(savedJob?.length > 0);
   }, [savedJob]);
 
   return (
-    <Card>
+    <Card className="flex flex-col">
       <CardHeader>
         <CardTitle className="flex justify-between font-bold">
           {job.title}
