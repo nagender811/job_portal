@@ -17,16 +17,36 @@ export async function applyToJob(token, _, jobData) {
 
   const resume = `${supabaseUrl}/storage/v1/object/public/resumes/${fileName}`;
 
-  const { data, error } = await supabase.from("applications").insert([
-    {
-      ...jobData,
-      resume,
-    },
-  ]).select()
+  const { data, error } = await supabase
+    .from("applications")
+    .insert([
+      {
+        ...jobData,
+        resume,
+      },
+    ])
+    .select();
 
-  if(error) {
+  if (error) {
     console.error("Error Fetching Companies:", error);
-    return null
+    return null;
+  }
+
+  return data;
+}
+
+export async function updateApplicationStatus(token, { job_id }, status) {
+  const supabase = await supabaseClient(token);
+
+  const { data, error } = await supabase
+    .from("applications")
+    .update({ status })
+    .eq("job_id", job_id)
+    .select();
+
+  if (error || data.length === 0) {
+    console.error("Error updating Application Status:", error);
+    return null;
   }
 
   return data;
