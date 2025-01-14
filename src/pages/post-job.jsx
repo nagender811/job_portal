@@ -19,7 +19,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { State } from "country-state-city";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
 import { z } from "zod";
 
@@ -83,7 +83,7 @@ const PostJob = () => {
   }
 
   if (user?.unsafeMetadata?.role !== "recruiter") {
-    return <navigate to="/jobs" />;
+    return <Navigate to="/jobs" />;
   }
 
   return (
@@ -111,7 +111,7 @@ const PostJob = () => {
             render={({ field }) => (
               <Select value={field.value} onValueChange={field.onChange}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Filter by Location" />
+                  <SelectValue placeholder="Select Location" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -134,7 +134,7 @@ const PostJob = () => {
             render={({ field }) => (
               <Select value={field.value} onValueChange={field.onChange}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Filter by Company">
+                  <SelectValue placeholder="Select Company">
                     {field.value
                       ? companies?.find((com) => com.id === Number(field.value))
                           ?.name
