@@ -5,7 +5,6 @@ import {
   SignedIn,
   SignedOut,
   SignIn,
-  SignInButton,
   UserButton,
   useUser,
 } from "@clerk/clerk-react";
@@ -15,7 +14,7 @@ const Header = () => {
   const [showSignIn, setShowSignIn] = useState(false);
 
   const [search, setSearch] = useSearchParams();
-  const user = useUser()
+  const user = useUser();
 
   useEffect(() => {
     if (search.get("sign-in")) {
@@ -33,7 +32,7 @@ const Header = () => {
   return (
     <>
       <nav className="py-4 flex justify-between items-center">
-        <Link>
+        <Link to="/">
           <img src="/logo.png" alt="logo" className="h-20" />
         </Link>
 
@@ -44,13 +43,13 @@ const Header = () => {
             </Button>
           </SignedOut>
           <SignedIn>
-            {user?.unsafeMetadata?.role==="recruiter" && (
-            <Link to="/post-job">
-              <Button variant="destructive" className="rounded-full">
-                <PenBox size={20} />
-                Post a Job
-              </Button>
-            </Link>
+            {user?.unsafeMetadata?.role === "recruiter" && (
+              <Link to="/post-job">
+                <Button variant="destructive" className="rounded-full">
+                  <PenBox size={20} />
+                  Post a Job
+                </Button>
+              </Link>
             )}
             <UserButton
               appearance={{
@@ -70,6 +69,7 @@ const Header = () => {
                   labelIcon={<Heart size={15} />}
                   href="/saved-jobs"
                 />
+                <UserButton.Action label="manageAccount" />
               </UserButton.MenuItems>
             </UserButton>
           </SignedIn>
